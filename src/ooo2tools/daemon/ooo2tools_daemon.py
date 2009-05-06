@@ -14,7 +14,6 @@ logger = logging.getLogger('Daemon')
 
 class MyDaemon(Daemon):
     def run(self):
-        logger.info('premiere boucle!')
         while True:
             if listdir(SHARED_DIR):
                 files, todo_dirs = check_share()
@@ -92,9 +91,9 @@ if __name__ == "__main__":
         elif 'restart' == sys.argv[1]:
             daemon.restart()
         else:
-            print "Unknown command"
+            logger.info("Unknown command")
             sys.exit(2)
         sys.exit(0)
     else:
-        print "usage: %s start|stop|restart" % sys.argv[0]
+        logger.info("usage: %s start|stop|restart" % sys.argv[0])
         sys.exit(2)
